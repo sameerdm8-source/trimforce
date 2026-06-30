@@ -1536,7 +1536,7 @@
     await ensureDictEditorConfigLoaded();
     panel.style.display = 'block';
     renderDictionaryTable();
-    panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    panel.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
   function flattenDictEntries() {
@@ -2043,7 +2043,7 @@
         <td><span class="badge ${r.status}">${badgeMap[r.status]}</span></td>
       </tr>`;
     }).join('');
-    if (rows.length>1000) tbody.innerHTML+=`<tr class="empty-row"><td colspan="6">Showing first 1,000 of ${rows.length.toLocaleString()} results. Export CSV for full list.</td></tr>`;
+    if (rows.length>1000) tbody.innerHTML+=`<tr class="empty-row"><td colspan="6">Showing first 1,000 of ${rows.length.toLocaleString()} results. Use Export to Excel for the full list.</td></tr>`;
   }
 
   // ── AI FIX ─────────────────────────────────────────────────────
