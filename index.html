@@ -360,13 +360,17 @@
   <!-- SCAN RESULTS -->
   <div id="results">
     <div class="results-header">
-      <div class="results-title">Scan Results</div>
+      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="toggleScanResults()">
+        <div class="results-title">Scan Results</div>
+        <span id="resultsCollapseIcon" style="font-size:13px;color:var(--text-muted);user-select:none;">▼</span>
+      </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
-        <button class="export-btn" id="aiFixBtn" onclick="runAIFix()" style="display:none;background:var(--accent-dim);border-color:var(--accent);color:var(--accent)">✨ AI Fix Paths</button>
+        <button class="export-btn" onclick="exportScanToExcel()" style="background:var(--green-dim);border-color:var(--green);color:var(--green);font-weight:600;">📊 Export to Excel</button>
+        <button class="export-btn" id="aiFixBtn" onclick="runAIFix()" style="display:none;background:var(--accent-dim);border-color:var(--accent);color:var(--accent)">🔍 Get Recommendations</button>
       </div>
     </div>
 
+    <div id="resultsCollapsible">
     <div class="stats-row" id="statsRow"></div>
     <div class="filter-bar">
       <button class="filter-btn active" onclick="setFilter('all',this)">All Paths</button>
@@ -390,17 +394,19 @@
         <tbody id="resultsBody"></tbody>
       </table>
     </div>
+    </div><!-- end resultsCollapsible -->
   </div>
 
   <!-- AI FIX SECTION -->
   <div id="aiSection">
     <div class="ai-header">
-      <div>
-        <div class="ai-title">✨ AI Path Recommendations</div>
-        <div class="ai-subtitle">Construction-aware abbreviations — keeps meaning, cuts characters</div>
+      <div style="display:flex;align-items:center;gap:10px;cursor:pointer;" onclick="toggleRecommendations()">
+        <div class="ai-title">🔍 Path Recommendations</div>
+        <span id="aiCollapseIcon" style="font-size:13px;color:var(--text-muted);user-select:none;">▼</span>
       </div>
     </div>
 
+    <div id="aiCollapsible">
     <div class="ai-status" id="aiStatus">
       <div class="ai-icon">🤖</div>
       <p id="aiStatusText">Ready to analyze problem paths...</p>
@@ -420,10 +426,6 @@
         <span>Columns are folder levels split on <strong>\</strong> · each card sizes to its own path</span>
       </div>
       <div class="ba-cards" id="baCards"></div>
-      <div style="background:var(--accent-dim);border:1px solid var(--accent);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">
-        <span style="font-size:18px">🚧</span>
-        <div><strong style="color:var(--accent)">Coming next:</strong> one-click rename &amp; download — automatically apply these AI-shortened names to your actual files and download a ready-to-copy folder. For now, use the recommendations above as your renaming guide.</div>
-      </div>
 
       <!-- DICTIONARY EDITOR PANEL — sits below AI recommendations, toggled by Edit Dictionary button -->
       <div id="dictPanel" style="display:none;margin-top:20px;">
@@ -455,7 +457,8 @@
         </div>
       </div>
     </div>
-  </div>
+    </div><!-- end aiCollapsible -->
+  </div><!-- end aiSection -->
 
 </main>
 
@@ -2050,7 +2053,7 @@
     const progressWrap = document.getElementById('aiProgressWrap');
     const progressFill = document.getElementById('aiProgressFill');
 
-    statusEl.textContent = `Applying TrimForce dictionary to ${problemPaths.length} problem paths...`;
+    statusEl.textContent = `Generating recommendations for ${problemPaths.length} problem paths...`;
     progressWrap.style.display='block';
 
     const limit = parseInt(document.getElementById('limitSelect').value);
@@ -2092,7 +2095,7 @@
     renderBeforeAfterTable(problemPaths, limit, destPath);
 
     document.getElementById('baTableWrap').style.display='block';
-    showNotif('AI fix complete! Use the shortened names above as your renaming guide.','success');
+    showNotif('Recommendations ready — use the shortened names above as your renaming guide.','success');
   }
 
   function splitIntoSegments(path) {
@@ -2167,6 +2170,42 @@
     document.getElementById('baCards').innerHTML = cardsHtml;
   }
 
+  let scanResultsCollapsed = false;
+  function toggleScanResults() {
+    scanResultsCollapsed = !scanResultsCollapsed;
+    document.getElementById('resultsCollapsible').style.display = scanResultsCollapsed ? 'none' : '';
+    document.getElementById('resultsCollapseIcon').textContent = scanResultsCollapsed ? '▶' : '▼';
+  }
+
+  let recommendationsCollapsed = false;
+  function toggleRecommendations() {
+    recommendationsCollapsed = !recommendationsCollapsed;
+    document.getElementById('aiCollapsible').style.display = recommendationsCollapsed ? 'none' : '';
+    document.getElementById('aiCollapseIcon').textContent = recommendationsCollapsed ? '▶' : '▼';
+  }
+
+  function exportScanToExcel() {
+    if (cachedResults.length === 0) { showNotif('No scan results to export — run a scan first', 'error'); return; }
+    const statusLabel = { danger: 'Critical', warn: 'Warning', ok: 'OK' };
+    const rows = cachedResults.map(r => ({
+      '#': cachedResults.indexOf(r) + 1,
+      'Status': statusLabel[r.status] || r.status,
+      'File Path': r.path,
+      'Total Length': r.len,
+      'Over By': r.overBy,
+      'Depth': r.depth,
+      'Full Path': r.fullPath || r.path,
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws['!cols'] = [
+      {wch:6}, {wch:10}, {wch:80}, {wch:14}, {wch:10}, {wch:8}, {wch:100}
+    ];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Scan Results');
+    XLSX.writeFile(wb, `TrimForce_Scan_${new Date().toISOString().slice(0,10)}.xlsx`);
+    showNotif('Excel exported!', 'success');
+  }
+
   function exportCSV() {
     if (cachedResults.length===0) return;
     const header = 'Status,Total Length,Over By,Depth,Relative Path,Full Path\n';
@@ -2182,7 +2221,7 @@
   function exportAISuggestionsToExcel() {
     const { problemPaths, limit, destPath } = lastAIFixBatch;
     if (!problemPaths || problemPaths.length === 0) {
-      showNotif('No AI suggestions to export yet — run AI Fix Paths first','error');
+      showNotif('No recommendations to export yet — run Get Recommendations first','error');
       return;
     }
 
