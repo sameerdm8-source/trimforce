@@ -44,7 +44,7 @@
   .logo-sub { font-size:12px;color:var(--text-muted);margin-top:1px; }
   .sundt-badge { margin-left:auto;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim); }
 
-  main { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  main { max-width: 1600px; margin: 0 auto; padding: 32px 16px; }
 
   .hero { margin-bottom: 40px; }
   .hero h1 { font-size:28px;font-weight:700;letter-spacing:-0.5px;line-height:1.2;margin-bottom:8px; }
@@ -162,16 +162,55 @@
   .ai-progress { height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:12px; }
   .ai-progress-fill { height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));border-radius:2px;width:0%;transition:width 0.5s; }
 
-  /* BEFORE/AFTER TABLE */
-  .ba-table-wrap { background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px; }
-  .ba-table { width:100%;border-collapse:collapse; }
-  .ba-table thead th { padding:10px 14px;text-align:left;font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border);background:#f5f5f5; }
-  .ba-table tbody tr { border-bottom:1px solid var(--border); }
-  .ba-table tbody tr:last-child { border-bottom:none; }
-  .ba-table tbody tr:hover { background:#f5f5f5; }
-  .ba-table td { padding:10px 14px;font-size:11px;font-family:var(--mono);vertical-align:top;line-height:1.5; }
-  .path-before { color:var(--red);word-break:break-word;max-width:none;line-height:1.6; }
-  .path-after { color:var(--green);word-break:break-word;max-width:none;line-height:1.6;font-weight:500; }
+  /* BEFORE/AFTER CARDS — each recommendation sizes to its own folder depth */
+  .ba-legend { display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:12px;color:var(--text-muted); }
+  .ba-legend .swatch { display:inline-flex;align-items:center;gap:6px; }
+  .ba-legend .dot { width:10px;height:10px;border-radius:3px;display:inline-block; }
+  .ba-legend .dot.orig { background:var(--red-dim);border:1px solid var(--red); }
+  .ba-legend .dot.short { background:var(--green-dim);border:1px solid var(--green); }
+
+  /* DICTIONARY EDITOR PANEL */
+  .dict-panel { background:var(--surface);border:1px solid var(--blue);border-radius:10px;padding:18px;margin-bottom:20px; }
+  .dict-panel-head { display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap; }
+  .dict-panel-title { font-size:15px;font-weight:700;margin-bottom:4px; }
+  .dict-panel-sub { font-size:12px;color:var(--text-muted);max-width:480px;line-height:1.4; }
+  .dict-add-row { display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap; }
+  .dict-add-btn { padding:9px 16px;border-radius:6px;border:1px solid var(--blue);background:var(--blue-dim);color:var(--blue);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--sans); }
+  .dict-add-btn:hover { opacity:0.85; }
+  .dict-input { flex:1;min-width:160px;font-family:var(--mono);font-size:12px;padding:9px 12px;border:1px solid var(--border);border-radius:6px;outline:none;background:var(--surface2);color:var(--text); }
+  .dict-input:focus { border-color:var(--blue); }
+  .dict-table-wrap { background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;max-height:340px;overflow-y:auto; }
+  .dict-table { width:100%;border-collapse:collapse; }
+  .dict-table thead th { padding:9px 12px;text-align:left;font-size:11px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border);background:#f5f5f5;position:sticky;top:0; }
+  .dict-table td { padding:7px 12px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:middle; }
+  .dict-table tbody tr:last-child td { border-bottom:none; }
+  .dict-table tbody tr:hover { background:rgba(0,0,0,0.02); }
+  .dict-cell-input { width:100%;font-family:var(--mono);font-size:12px;padding:5px 8px;border:1px solid transparent;border-radius:5px;outline:none;background:transparent;color:var(--text); }
+  .dict-cell-input:hover, .dict-cell-input:focus { border-color:var(--border);background:#fff; }
+  .dict-cell-input.builtin { color:var(--text-muted); }
+  .dict-delete-btn { padding:4px 9px;border-radius:5px;border:1px solid var(--border);background:#fff;color:var(--text-muted);font-size:11px;cursor:pointer; }
+  .dict-delete-btn:hover { border-color:var(--red);color:var(--red); }
+  .dict-pass-label { font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-dim);padding:5px 12px;background:#fafafa; }
+  .pill { display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:6px 12px;background:#fff;color:var(--text-muted);font-size:12px;font-weight:700;white-space:nowrap; }
+
+  .ba-cards { display:flex;flex-direction:column;gap:14px;margin-bottom:20px; }
+  .ba-card { background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden; }
+  .ba-card-head { display:flex;align-items:center;gap:10px;padding:7px 14px;border-bottom:1px solid var(--border);background:#f5f5f5; }
+  .ba-card-idx { font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text-muted); }
+  /* per-card scroll: a single oversized path scrolls inside its OWN card, not the whole list */
+  .ba-card-scroll { overflow-x:auto; }
+  .ba-card-table { border-collapse:collapse;width:100%;table-layout:fixed; }
+  .ba-card-table td { padding:6px 10px;font-size:11px;font-family:var(--mono);vertical-align:top;line-height:1.4; }
+  .ba-card-table tr.row-original td { border-bottom:1px solid var(--border); }
+
+  .seg-cell { font-family:var(--mono);font-size:11px;white-space:nowrap;border-right:1px solid var(--border);overflow:hidden;text-overflow:ellipsis; }
+  .seg-cell.filename-cell { white-space:normal;word-break:break-word;font-weight:600; }
+  .seg-cell:last-of-type { border-right:none; }
+  tr.row-original .seg-cell { color:var(--red);background:var(--red-dim); }
+  tr.row-shortened .seg-cell { color:var(--green);background:var(--green-dim); }
+  .ba-meta { display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--text-muted);padding:9px 14px;border-top:1px solid var(--border);background:var(--surface2); }
+  .ba-meta-item { font-family:var(--mono);font-size:12px; }
+  .seg-empty { color:var(--text-dim);opacity:0.3; }
   .saving-badge { display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;background:var(--green-dim);color:var(--green);border:1px solid var(--green);white-space:nowrap; }
 
   .download-zip-btn {
@@ -287,6 +326,7 @@
       <div class="path-input-wrap">
         <label>Destination path on K drive</label>
         <input type="text" class="path-field" id="destPath"
+          value="\\temfs25\Advanced_Facilities\"
           placeholder="\\temfs25\Advanced_Facilities\162145 - Intel MWOA-WaTR PH2\Temp - Procore Copy\..."
           oninput="updatePathHint()">
         <div class="path-hint" id="pathHint">Destination path: 0 characters</div>
@@ -320,9 +360,44 @@
       <div class="results-title">Scan Results</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="export-btn" id="dictToggleBtn" onclick="toggleDictionaryPanel()" style="border-color:var(--blue);color:var(--blue);background:var(--blue-dim)">📖 Edit Dictionary</button>
         <button class="export-btn" id="aiFixBtn" onclick="runAIFix()" style="display:none;background:var(--accent-dim);border-color:var(--accent);color:var(--accent)">✨ AI Fix Paths</button>
       </div>
     </div>
+
+    <!-- DICTIONARY EDITOR PANEL — collapsed by default, edits here apply globally to AI Fix -->
+    <div id="dictPanel" style="display:none;">
+      <div class="dict-panel">
+        <div class="dict-panel-head">
+          <div>
+            <div class="dict-panel-title">📖 Shortening Dictionary</div>
+            <div class="dict-panel-sub">Edits here apply to <strong>every</strong> file the next time you run AI Fix Paths — not just one row.</div>
+          </div>
+          <span class="pill" id="dictCountPill">0 entries</span>
+        </div>
+
+        <div class="dict-add-row">
+          <input type="text" id="dictNewOriginal" class="dict-input" placeholder="Term to find (e.g. Operations and Maintenance Manual)">
+          <input type="text" id="dictNewShort" class="dict-input" placeholder="Shorten to (e.g. OMM)">
+          <button class="dict-add-btn" onclick="addDictionaryEntry()">+ Add Term</button>
+        </div>
+
+        <div class="dict-toolbar">
+          <input type="text" id="dictSearch" class="dict-input" placeholder="Search dictionary..." oninput="renderDictionaryTable()" style="max-width:280px;">
+          <button class="export-btn" onclick="resetDictionaryToDefaults()" style="border-color:var(--red);color:var(--red)">Reset to Defaults</button>
+        </div>
+
+        <div class="dict-table-wrap">
+          <table class="dict-table">
+            <thead>
+              <tr><th>Term</th><th>Shortens To</th><th></th></tr>
+            </thead>
+            <tbody id="dictTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <div class="stats-row" id="statsRow"></div>
     <div class="filter-bar">
       <button class="filter-btn active" onclick="setFilter('all',this)">All Paths</button>
@@ -366,21 +441,15 @@
     </div>
 
     <div id="baTableWrap" style="display:none">
-      <div class="ba-table-wrap">
-        <table class="ba-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Original Path</th>
-              <th>AI Shortened Path</th>
-              <th>Saved</th>
-              <th>New Length</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="baBody"></tbody>
-        </table>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+        <button class="export-btn" onclick="exportAISuggestionsToExcel()" style="background:var(--green-dim);border-color:var(--green);color:var(--green);font-weight:600;">📊 Download Excel</button>
       </div>
+      <div class="ba-legend">
+        <span class="swatch"><span class="dot orig"></span> Original</span>
+        <span class="swatch"><span class="dot short"></span> Shortened</span>
+        <span>Columns are folder levels split on <strong>\</strong> · each card sizes to its own path</span>
+      </div>
+      <div class="ba-cards" id="baCards"></div>
       <div style="background:var(--accent-dim);border:1px solid var(--accent);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);">
         <span style="font-size:18px">🚧</span>
         <div><strong style="color:var(--accent)">Coming next:</strong> one-click rename &amp; download — automatically apply these AI-shortened names to your actual files and download a ready-to-copy folder. For now, use the recommendations above as your renaming guide.</div>
@@ -394,6 +463,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://unpkg.com/7z-wasm@1.1.0/7zz.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
   // ── ACCESS GATE ────────────────────────────────────────────────
   const TRIMFORCE_ACCESS_CODE = 'sundt2026'; // change this before sharing the demo link
@@ -421,6 +491,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const pwField = document.getElementById('gatePassword');
     if (pwField) pwField.focus();
+    if (typeof updatePathHint === 'function') updatePathHint();
   });
 
   let allPaths = [];
@@ -568,6 +639,860 @@
     'Programming': 'Prog',
     'Design': 'Dsgn',
   };
+
+  // ── TRIMFORCE DICTIONARY ENGINE ─────────────────────────────────
+  // Multi-pass, user-editable abbreviation dictionary. Pass 1 = common construction
+  // phrases/terms (built-in). Pass 2 = project-specific real-world phrases (built-in).
+  // Pass 3 = entries added/edited inline via the per-card override field in the results below,
+  // persisted in localStorage so overrides survive a page reload.
+  const TRIMFORCE_DICTIONARY_PASSES = [
+    [
+      ['Acceleration', 'ACCEL'],
+      ['Access', 'ACC'],
+      ['Activity', 'ACT'],
+      ['Actuator', 'ACTR'],
+      ['Addendum', 'ADD'],
+      ['Adder', 'ADDR'],
+      ['Addition', 'ADDN'],
+      ['Adjustment', 'ADJ'],
+      ['Administration', 'ADMIN'],
+      ['Aeration', 'AER'],
+      ['Airflow', 'AF'],
+      ['Alignment', 'ALGN'],
+      ['Allowance', 'ALLOW'],
+      ['Alternate', 'ALT'],
+      ['Aluminum', 'AL'],
+      ['Amendment', 'AMD'],
+      ['American Society of Mechanical Engineers', 'ASME'],
+      ['American Welding Society', 'AWS'],
+      ['Amteck', 'AMT'],
+      ['Analysis', 'ANLY'],
+      ['Antifoam', 'ANTFM'],
+      ['Appendix', 'APPX'],
+      ['Applicator', 'APPL'],
+      ['April', 'APR'],
+      ['Architectural', 'ARCH'],
+      ['Archive', 'ARCV'],
+      ['Area', 'AR'],
+      ['Arizona', 'AZ'],
+      ['Arizona Ocotillo', 'AZO'],
+      ['Arrest', 'ARST'],
+      ['Asbestos', 'ASB'],
+      ['Assessment', 'ASMT'],
+      ['Assist', 'ASST'],
+      ['Assumption', 'ASMP'],
+      ['Assurance', 'ASR'],
+      ['Audit', 'AUD'],
+      ['Author', 'AUTH'],
+      ['Automation', 'AUTO'],
+      ['Backer', 'BCKR'],
+      ['Background', 'BKGD'],
+      ['Backup', 'BKUP'],
+      ['baffle', 'BFL'],
+      ['Balance', 'BAL'],
+      ['Base Build', 'BB'],
+      ['Basefile', 'BF'],
+      ['Basis of Design Report', 'BODR'],
+      ['Biological', 'BIOL'],
+      ['Biological Nutrient Removal', 'BNR'],
+      ['Blind', 'BLND'],
+      ['Blower', 'BLWR'],
+      ['Blowoff', 'BLOF'],
+      ['Board', 'BD'],
+      ['Boiler', 'BLR'],
+      ['Bolt', 'BLT'],
+      ['Boundary', 'BNDY'],
+      ['Bracket', 'BRKT'],
+      ['Breaker', 'BRKR'],
+      ['BRFPSWIRL', 'BRF'],
+      ['Brine', 'BRN'],
+      ['Build', 'BLDG'],
+      ['Building Information Modeling', 'BIM'],
+      ['Butterfly', 'BFLY'],
+      ['Bypass', 'BYP'],
+      ['Cabinet', 'CAB'],
+      ['Cable', 'CBL'],
+      ['Calculation', 'CALC'],
+      ['Callout', 'CLO'],
+      ['Cancellation', 'CNCL'],
+      ['Canfield', 'CNF'],
+      ['Canopy', 'CNPY'],
+      ['Capacity', 'CAP'],
+      ['Capitol', 'CPT'],
+      ['Carollo', 'CRL'],
+      ['Casework', 'CSWK'],
+      ['Cassette', 'CSTTE'],
+      ['Cathodic', 'CATH'],
+      ['Caulk', 'CLK'],
+      ['Caustic', 'CAUS'],
+      ['Centrifugal', 'CFGL'],
+      ['Certificate', 'CERT'],
+      ['Change', 'CHG'],
+      ['Change of Work', 'COW'],
+      ['Change Order', 'CO'],
+      ['Channel', 'CHAN'],
+      ['Check', 'CHK'],
+      ['Checklist', 'CHKLST'],
+      ['Chemical', 'CHEM'],
+      ['ChemLink', 'CHML'],
+      ['Chlorinated Polyvinyl Chloride', 'CPVC'],
+      ['Chute', 'CHT'],
+      ['Circuit', 'CKT'],
+      ['Civil', 'CIV'],
+      ['Clash', 'CLSH'],
+      ['Classic', 'CLSC'],
+      ['Clean', 'CLN'],
+      ['Cleanup', 'CLNUP'],
+      ['Client', 'CLT'],
+      ['Closeout', 'CLSOUT'],
+      ['Closure', 'CLSR'],
+      ['Cofferdam', 'CFD'],
+      ['COLLABORATION', 'COLLAB'],
+      ['Comment', 'CMT'],
+      ['Commissioning', 'CX'],
+      ['Commit', 'CMIT'],
+      ['COMMUNICATION', 'COMM'],
+      ['Completion', 'COMPL'],
+      ['Composition', 'COMPN'],
+      ['Compressor', 'COMPR'],
+      ['Concentrator', 'CNCNT'],
+      ['Concrete', 'CONC'],
+      ['Condition', 'COND'],
+      ['Conduit', 'CNDT'],
+      ['Construction', 'CONST'],
+      ['Construction Documents', 'CD'],
+      ['Contingency', 'CONT'],
+      ['Contractor', 'CONTR'],
+      ['Control', 'CTRL'],
+      ['Conveyance', 'CNV'],
+      ['Coordination', 'COORD'],
+      ['Copper', 'CU'],
+      ['Corbins', 'CRB'],
+      ['Cost', 'CST'],
+      ['Cover', 'COV'],
+      ['Crane', 'CRN'],
+      ['Credit', 'CR'],
+      ['Criteria', 'CRIT'],
+      ['Crystallizer', 'CRYS'],
+      ['Cummins', 'CMMNS'],
+      ['CURRENT', 'CRR'],
+      ['Daily', 'DLY'],
+      ['Datasheet', 'DS'],
+      ['Decant', 'DCNT'],
+      ['Decommit', 'DECOM'],
+      ['Deduct', 'DED'],
+      ['Definition', 'DEFN'],
+      ['Deliverable', 'DELIV'],
+      ['Demarcation', 'DEMARC'],
+      ['Design', 'DSGN'],
+      ['Design Development', 'DD'],
+      ['Design Review Boundary', 'DRB'],
+      ['Detail', 'DTL'],
+      ['Deviation', 'DEV'],
+      ['Device', 'DVC'],
+      ['Dewater', 'DEWTR'],
+      ['Diagram', 'DIAG'],
+      ['Diaphragm', 'DIA'],
+      ['Diesel', 'DSL'],
+      ['Difference', 'DIFF'],
+      ['Discharge', 'DISCH'],
+      ['Discipline', 'DISC'],
+      ['Distillate', 'DIST'],
+      ['distribution', 'DISTR'],
+      ['Division', 'DIV'],
+      ['Document', 'DOC'],
+      ['Document Management System', 'DMS'],
+      ['Door', 'DR'],
+      ['Double', 'DBL'],
+      ['Draft', 'DFT'],
+      ['Drain', 'DRN'],
+      ['Drawing', 'DWG'],
+      ['Drive', 'DRV'],
+      ['Ductile', 'DI'],
+      ['Eagle', 'EGL'],
+      ['Early', 'ERLY'],
+      ['Early Works', 'EW'],
+      ['Earthwork', 'ERTH'],
+      ['EHouse', 'EH'],
+      ['Electrical', 'ELEC'],
+      ['Electronic', 'ELTRN'],
+      ['Ellington', 'ELL'],
+      ['Enclosure', 'ENCL'],
+      ['Engineer', 'ENGR'],
+      ['Environmental Health and Safety', 'EHS'],
+      ['Epoxy', 'EPXY'],
+      ['Equipment', 'EQUIP'],
+      ['Erect', 'ERC'],
+      ['EVAPORATOR', 'EVAP'],
+      ['Example', 'EX'],
+      ['Execution', 'EXEC'],
+      ['Exhibit', 'EXH'],
+      ['Exist', 'EXST'],
+      ['Expansion', 'EXP'],
+      ['Exploratory', 'EXPL'],
+      ['Extension', 'EXT'],
+      ['Exterior', 'EXTR'],
+      ['Extinguisher', 'EXTNG'],
+      ['Extract', 'XTRT'],
+      ['Fabrication', 'FAB'],
+      ['Facewash', 'FCWSH'],
+      ['Facility', 'FAC'],
+      ['Factory Acceptance Test', 'FAT'],
+      ['Fence', 'FNC'],
+      ['Ferguson', 'FRG'],
+      ['Fibercast', 'FBRCS'],
+      ['Fiberglass', 'FG'],
+      ['Fiberglass Reinforced Plastic', 'FRP'],
+      ['Field', 'FLD'],
+      ['Filtration', 'FILT'],
+      ['Final', 'FNL'],
+      ['Finish', 'FIN'],
+      ['Fire', 'FR'],
+      ['Fitting', 'FTG'],
+      ['Fixture', 'FIX'],
+      ['Flange', 'FLG'],
+      ['Flash', 'FLSH'],
+      ['Floor', 'FLR'],
+      ['Flow', 'FLW'],
+      ['Flush', 'FLH'],
+      ['Folder', 'FLDR'],
+      ['Forecast', 'FCST'],
+      ['Format', 'FMT'],
+      ['Foundation', 'FND'],
+      ['Foundry', 'FNDY'],
+      ['Frame', 'FRM'],
+      ['Frequency', 'FREQ'],
+      ['Furnishing', 'FURN'],
+      ['Gallon', 'GAL'],
+      ['Gasket', 'GSKT'],
+      ['Gate', 'GT'],
+      ['Gauge', 'GA'],
+      ['General', 'GEN'],
+      ['General Contractor', 'GC'],
+      ['Generator', 'GENR'],
+      ['Genset', 'GST'],
+      ['Geotechnical', 'GEOTECH'],
+      ['Global', 'GLBL'],
+      ['Goulds', 'GLD'],
+      ['Greenthread', 'GRN'],
+      ['Ground', 'GND'],
+      ['Group', 'GRP'],
+      ['Growth', 'GRWTH'],
+      ['Guarantee', 'GUAR'],
+      ['Guard', 'GRD'],
+      ['Gutter', 'GUTT'],
+      ['Gypsum', 'GYP'],
+      ['Handle', 'HDL'],
+      ['Hardware', 'HDWR'],
+      ['header', 'HDR'],
+      ['Heating Ventilating and Air Conditioning', 'HVAC'],
+      ['Horizon', 'HRZN'],
+      ['Horizontal', 'HORIZ'],
+      ['House', 'HSE'],
+      ['Hydraulics', 'HYDR'],
+      ['Hydro', 'HYD'],
+      ['Hypochlorite', 'HYPO'],
+      ['Identification', 'ID'],
+      ['Impact', 'IMP'],
+      ['Improvement', 'IMPRV'],
+      ['Incentive', 'INCNT'],
+      ['Include', 'INCL'],
+      ['Increase', 'INCR'],
+      ['Index', 'IDX'],
+      ['Indicator', 'INDIC'],
+      ['Indirect', 'INDR'],
+      ['Industrial', 'IND'],
+      ['Industrial Waste Water', 'IWW'],
+      ['Information', 'INFO'],
+      ['Infrastructure', 'INFR'],
+      ['Initial', 'INIT'],
+      ['Initial Commitment to Proceed Order', 'ICO'],
+      ['Injection', 'INJ'],
+      ['Inlet', 'INLT'],
+      ['Inspection', 'INSP'],
+      ['Installation', 'INSTL'],
+      ['Instrumentation', 'INSTR'],
+      ['Insulation', 'INSUL'],
+      ['Integration', 'INTEG'],
+      ['Intel', 'INT'],
+      ['Intel Change Request', 'ICR'],
+      ['Intel Master Construction Specification', 'IMCS'],
+      ['Intel Master Design Standard', 'IMDS'],
+      ['Interconnect', 'INTCN'],
+      ['Interface', 'INTF'],
+      ['Invoice', 'INV'],
+      ['Isolation', 'ISO'],
+      ['Issue', 'ISS'],
+      ['Issued for Construction', 'IFC'],
+      ['Item', 'ITM'],
+      ['Joint', 'JT'],
+      ['KIMBERLY', 'KMB'],
+      ['KMODELS', 'KMD'],
+      ['Label', 'LBL'],
+      ['Laboratory', 'LAB'],
+      ['Latest', 'LTST'],
+      ['Laydown', 'LYDN'],
+      ['Layout', 'LAY'],
+      ['Leakage', 'LEAK'],
+      ['Length', 'LG'],
+      ['Letter', 'LTR'],
+      ['Level', 'LVL'],
+      ['Liberty', 'LBRT'],
+      ['Light', 'LT'],
+      ['Lightning', 'LTNG'],
+      ['Limitorque', 'LMT'],
+      ['Line', 'LN'],
+      ['Link', 'LNK'],
+      ['Liquid', 'LIQ'],
+      ['List', 'LST'],
+      ['Literature', 'LIT'],
+      ['Load', 'LD'],
+      ['Location', 'LOC'],
+      ['Logistics', 'LOG'],
+      ['Long Lead Equipment', 'LLE'],
+      ['Louver', 'LVR'],
+      ['Lower', 'LWR'],
+      ['MAaRP', 'MRP'],
+      ['Machine', 'MACH'],
+      ['Maintenance', 'MAINT'],
+      ['Malec', 'MLC'],
+      ['Management', 'MGMT'],
+      ['Manhole', 'MH'],
+      ['Manual', 'MAN'],
+      ['Manufacture', 'MFG'],
+      ['Manway', 'MNWY'],
+      ['Markup', 'MKUP'],
+      ['Masonry', 'MAS'],
+      ['Master', 'MSTR'],
+      ['Master Equipment List', 'MEL'],
+      ['Material', 'MATL'],
+      ['Material Test Report', 'MTR'],
+      ['Maverick', 'MVR'],
+      ['Measure', 'MEAS'],
+      ['Mechanical', 'MECH'],
+      ['Membrane', 'MEMB'],
+      ['Membrane Bioreactor', 'MBR'],
+      ['Metal', 'MTL'],
+      ['Midpoint', 'MDPT'],
+      ['Milestone', 'MS'],
+      ['Minute', 'MIN'],
+      ['Mixer', 'MXR'],
+      ['Model', 'MDL'],
+      ['Modification', 'MOD'],
+      ['Moisture', 'MOIST'],
+      ['Monthly', 'MO'],
+      ['Mueller', 'MLL'],
+      ['Multi', 'MLT'],
+      ['NaOCI', 'NC'],
+      ['NaOCl', 'NCL'],
+      ['Native', 'NATV'],
+      ['Navisworks', 'NVSW'],
+      ['Needle', 'NDL'],
+      ['Neenah', 'NNH'],
+      ['Network', 'NET'],
+      ['NonDestructive', 'NND'],
+      ['Nondestructive Examination', 'NDE'],
+      ['Nondestructive Testing', 'NDT'],
+      ['Notes', 'NTS'],
+      ['Notice', 'NTC'],
+      ['Nozzle', 'NOZ'],
+      ['Occupancy', 'OCC'],
+      ['Ocotillo Intel campus', 'OC'],
+      ['October', 'OCT'],
+      ['OCWaTR', 'OCW'],
+      ['Offset', 'OFST'],
+      ['Onsite Acceptance Test', 'OAT'],
+      ['Opening', 'OPNG'],
+      ['Operate', 'OPR'],
+      ['Operation', 'OPRN'],
+      ['Order', 'ORD'],
+      ['Organize', 'ORG'],
+      ['Original', 'ORIG'],
+      ['Ortho', 'ORT'],
+      ['Outdoor', 'OD'],
+      ['Outfall', 'OUTF'],
+      ['Overflow', 'OVFL'],
+      ['Overhead', 'OVHD'],
+      ['Owner Furnished Contractor Installed', 'OFCI'],
+      ['Package', 'PKG'],
+      ['Package Design Definition', 'PDD'],
+      ['Packet', 'PCKT'],
+      ['Paint', 'PNT'],
+      ['Panel', 'PNL'],
+      ['Party', 'PRTY'],
+      ['Patch', 'PTCH'],
+      ['Pending', 'PNDG'],
+      ['Performance', 'PERF'],
+      ['Permit', 'PRMT'],
+      ['Phase', 'PH'],
+      ['Phoenix', 'PHN'],
+      ['Phosphoric', 'PHOS'],
+      ['Photo', 'PHO'],
+      ['Photometric', 'PHTM'],
+      ['Picture', 'PIC'],
+      ['PipeFlo', 'PPF'],
+      ['Plan', 'PLN'],
+      ['Plan of Record', 'POR'],
+      ['Plant', 'PLNT'],
+      ['Plastic', 'PLAS'],
+      ['Plate', 'PL'],
+      ['Plumb', 'PLMB'],
+      ['Pollution', 'POLL'],
+      ['Polymer', 'POLY'],
+      ['Polyvinyl Chloride', 'PVC'],
+      ['Portable Document Format', 'PDF'],
+      ['Position', 'POS'],
+      ['Pothole', 'PTHL'],
+      ['Power', 'PWR'],
+      ['Precast', 'PRCST'],
+      ['PRECISION', 'PRC'],
+      ['Precon', 'PRCN'],
+      ['Preliminary', 'PRELIM'],
+      ['Presentation', 'PRES'],
+      ['Pressure', 'PRESS'],
+      ['Previous', 'PREV'],
+      ['Procedure', 'PROCD'],
+      ['Proceed', 'PRCD'],
+      ['Process', 'PROC'],
+      ['Process Specific Support System Building', 'PSSS'],
+      ['Procurement', 'PROCR'],
+      ['Product', 'PROD'],
+      ['Profile', 'PROF'],
+      ['Program', 'PGM'],
+      ['Progress', 'PROG'],
+      ['Project', 'PROJ'],
+      ['Project Management Team', 'PMT'],
+      ['Protection', 'PROT'],
+      ['Provide', 'PROV'],
+      ['Pull', 'PUL'],
+      ['Pump', 'PMP'],
+      ['Purchase', 'PUR'],
+      ['QMSManual', 'QMS'],
+      ['Qualification', 'QUAL'],
+      ['Quality', 'QLTY'],
+      ['Quality Assurance Quality Control', 'QAQC'],
+      ['Question', 'QSTN'],
+      ['Quote', 'QT'],
+      ['Raceway', 'RCWY'],
+      ['Rack', 'RCK'],
+      ['Radio', 'RAD'],
+      ['Rail', 'RL'],
+      ['Ready', 'RDY'],
+      ['Receive', 'RCV'],
+      ['Recirc', 'RECR'],
+      ['Reclaim', 'RECL'],
+      ['Reconciliation', 'RECON'],
+      ['Record', 'REC'],
+      ['Record Drawing', 'RA'],
+      ['Redline', 'RDLN'],
+      ['Redress', 'RDRS'],
+      ['Reduce', 'RED'],
+      ['Reference', 'REF'],
+      ['Regen', 'RGN'],
+      ['Regulatory', 'REG'],
+      ['Reimbursable', 'REIMB'],
+      ['Reinforce', 'RNFRC'],
+      ['Release', 'RLS'],
+      ['Remobilization', 'REMOB'],
+      ['removal', 'RMVL'],
+      ['Rental', 'RNTL'],
+      ['Repair', 'RPR'],
+      ['Replacement', 'RPLMT'],
+      ['Report', 'RPT'],
+      ['Request', 'REQ'],
+      ['Request for Information', 'RFI'],
+      ['Requirement', 'REQMT'],
+      ['Reroute', 'RRT'],
+      ['Response', 'RESP'],
+      ['Return', 'RTN'],
+      ['Return Activated Sludge', 'RAS'],
+      ['Reverse Osmosis', 'RO'],
+      ['Review', 'RVW'],
+      ['Revision', 'REV'],
+      ['Revit', 'RVT'],
+      ['Rotary', 'ROT'],
+      ['Route', 'RTE'],
+      ['Safety', 'SFTY'],
+      ['Sanitary', 'SAN'],
+      ['Scaffold', 'SCAF'],
+      ['Schedule', 'SCHED'],
+      ['Scissor', 'SCIS'],
+      ['Scope', 'SCP'],
+      ['Scope of Work', 'SOW'],
+      ['Scorecard', 'SCRCD'],
+      ['Screw', 'SCRW'],
+      ['Scrubber', 'SCRB'],
+      ['Sealant', 'SLNT'],
+      ['Security', 'SCTY'],
+      ['Sequence', 'SEQ'],
+      ['Sequence of Operation', 'SOO'],
+      ['Series', 'SER'],
+      ['Service', 'SVC'],
+      ['Setpoint', 'SP'],
+      ['Sewer', 'SWR'],
+      ['Share', 'SHR'],
+      ['Sheet', 'SHT'],
+      ['Short', 'SHRT'],
+      ['Shower', 'SHWR'],
+      ['Shust', 'SHS'],
+      ['Shutdown', 'SD'],
+      ['Shutdown Tie In Matrix', 'SDTI'],
+      ['Siemens', 'SMN'],
+      ['Signage', 'SIGN'],
+      ['Signoff', 'SO'],
+      ['Silencer', 'SIL'],
+      ['Single', 'SGL'],
+      ['Site', 'ST'],
+      ['Sitework', 'STWK'],
+      ['Sketch', 'SK'],
+      ['Skid', 'SKD'],
+      ['Skimmer', 'SKMR'],
+      ['Sleeve', 'SLV'],
+      ['Slide', 'SLD'],
+      ['Sludge', 'SLDG'],
+      ['Small', 'SM'],
+      ['Sodium', 'NA'],
+      ['Solenoid', 'SOL'],
+      ['Source', 'SRC'],
+      ['Spare', 'SPR'],
+      ['Spark', 'SPRK'],
+      ['Special', 'SPCL'],
+      ['Specialty', 'SPLTY'],
+      ['Specific', 'SPCFC'],
+      ['Specification', 'SPEC'],
+      ['Speedie', 'SPD'],
+      ['Spend', 'SPND'],
+      ['Spoil', 'SPO'],
+      ['Spool', 'SPL'],
+      ['Spray', 'SPRY'],
+      ['Spreadsheet', 'XLS'],
+      ['Sprinkler', 'SPKLR'],
+      ['Stack', 'STAK'],
+      ['Staffing', 'STAFF'],
+      ['Stainless', 'SS'],
+      ['Stair', 'STR'],
+      ['Stand', 'STND'],
+      ['Standard', 'STD'],
+      ['Startup', 'SU'],
+      ['Steel', 'STL'],
+      ['Stock', 'STK'],
+      ['Storage', 'STOR'],
+      ['Storyboard', 'STRY'],
+      ['Strainer', 'STRN'],
+      ['Stress', 'STRS'],
+      ['Structural', 'STRUCT'],
+      ['Stud', 'STU'],
+      ['Study', 'STDY'],
+      ['Subcontractor', 'SUBCONTR'],
+      ['Submittal', 'SUB'],
+      ['Substantial', 'SUBST'],
+      ['Substructure', 'SUBSTR'],
+      ['summary', 'SUM'],
+      ['Sundt', 'SND'],
+      ['Supplement', 'SUPPL'],
+      ['supply', 'SPLY'],
+      ['Support', 'SUPP'],
+      ['Suppression', 'SUPPR'],
+      ['Surveillance', 'SURV'],
+      ['Survey', 'SVY'],
+      ['Switch', 'SW'],
+      ['Switchgear', 'SWGR'],
+      ['Switchyard', 'SWYD'],
+      ['System', 'SYS'],
+      ['Table', 'TBL'],
+      ['Tank', 'TK'],
+      ['Target', 'TGT'],
+      ['Technical', 'TECH'],
+      ['Technical Memorandum', 'TM'],
+      ['Technology', 'TCHNO'],
+      ['Telecom', 'TELE'],
+      ['Temperature', 'TEMP'],
+      ['Template', 'TMPL'],
+      ['Test', 'TST'],
+      ['Thermal', 'THRM'],
+      ['Thermasheath', 'THRMS'],
+      ['Thermostat', 'TSTAT'],
+      ['through', 'THRG'],
+      ['Time Current Curve', 'TCC'],
+      ['Torque', 'TRQ'],
+      ['Tower', 'TWR'],
+      ['Trace', 'TRC'],
+      ['Trailer', 'TRLR'],
+      ['Transfer', 'XFER'],
+      ['Transformer', 'XFMR'],
+      ['Transition', 'TRANS'],
+      ['Transmittal', 'TRNS'],
+      ['Transmitter', 'XMTR'],
+      ['Treatment', 'TRTMT'],
+      ['Trend', 'TRND'],
+      ['Trestle', 'TRES'],
+      ['Truck', 'TRK'],
+      ['Turbine', 'TURB'],
+      ['Turnover', 'TO'],
+      ['Ultra Pure Water', 'UPW'],
+      ['Unbound', 'UNBD'],
+      ['Underground', 'UG'],
+      ['Uninterruptible Power Supply', 'UPS'],
+      ['Unline', 'UNLN'],
+      ['Update', 'UPD'],
+      ['Upgrade', 'UPG'],
+      ['Upload', 'UPL'],
+      ['Upper', 'UPR'],
+      ['Utility', 'UTIL'],
+      ['Valve', 'VLV'],
+      ['vapor', 'VAP'],
+      ['Variable', 'VAR'],
+      ['Variable Frequency Drive', 'VFD'],
+      ['Vendor', 'VNDR'],
+      ['Vendor Furnished', 'VF'],
+      ['Ventilation', 'VENT'],
+      ['Veolia', 'VL'],
+      ['VERIFICATION', 'VRF'],
+      ['Vertical', 'VERT'],
+      ['Vessel', 'VSL'],
+      ['Vortex', 'VTX'],
+      ['Warranty', 'WARR'],
+      ['Waste', 'WST'],
+      ['Waste Activated Sludge', 'WAS'],
+      ['Wastewater', 'WW'],
+      ['Water', 'WTR'],
+      ['Water treatment program codename', 'WATR'],
+      ['WatTR', 'WTT'],
+      ['Weld', 'WLD'],
+      ['Welding Procedure Specification', 'WPS'],
+      ['wireless', 'WL'],
+      ['Work Order', 'WO'],
+      ['Work Package', 'WP'],
+      ['Worksite', 'WS'],
+      ['Wunderlich', 'WND'],
+      ['Xrefs', 'XRF']
+    ]
+  ];
+
+  function escapeRegExpDict(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function buildDictionaryRegex(phrase) {
+    const words = phrase.trim().split(/\s+/).map(escapeRegExpDict);
+    return new RegExp('(^|[^A-Za-z0-9])(' + words.join('[^A-Za-z0-9]+') + ')(?=$|[^A-Za-z0-9])', 'gi');
+  }
+
+  const TRIMFORCE_DICTIONARY_STORAGE_KEY = 'trimforce.dictionary.v1';
+  let trimForceDictionaryLoadPromise = null;
+
+  function defaultDictionaryConfig() {
+    return {
+      version: 1,
+      passes: TRIMFORCE_DICTIONARY_PASSES.map(pass =>
+        pass.map(([originalText, originalShortening]) => ({
+          originalText,
+          originalShortening,
+          userShortening: ''
+        }))
+      )
+    };
+  }
+
+  function normalizeDictionaryConfig(config) {
+    const fallback = defaultDictionaryConfig();
+    const rawPasses = Array.isArray(config?.passes)
+      ? config.passes
+      : (Array.isArray(config?.entries) ? [config.entries] : fallback.passes);
+
+    const passes = rawPasses.map(pass => (Array.isArray(pass) ? pass : []).map(entry => {
+      if (Array.isArray(entry)) {
+        return {originalText: entry[0] || '', originalShortening: entry[1] || '', userShortening: entry[2] || ''};
+      }
+      return {
+        originalText: entry?.originalText || entry?.original || entry?.phrase || entry?.from || '',
+        originalShortening: entry?.originalShortening || entry?.standardShortening || entry?.shortening || entry?.to || '',
+        userShortening: entry?.userShortening || entry?.userProvidedShortening || ''
+      };
+    }).filter(entry => entry.originalText.trim() && (entry.originalShortening.trim() || entry.userShortening.trim())));
+
+    while (passes.length < 3) passes.push([]);
+    return {version: config?.version || 1, passes};
+  }
+
+  function effectiveShortening(entry) {
+    return (entry.userShortening || '').trim() || (entry.originalShortening || '').trim();
+  }
+
+  function compileTrimForceDictionary(config) {
+    return normalizeDictionaryConfig(config).passes.map(pass =>
+      pass
+        .slice()
+        .sort((a, b) => b.originalText.length - a.originalText.length)
+        .map(entry => ({re: buildDictionaryRegex(entry.originalText), to: effectiveShortening(entry)}))
+    );
+  }
+
+  let TRIMFORCE_DICTIONARY = compileTrimForceDictionary(defaultDictionaryConfig());
+
+  async function loadTrimForceDictionary(forceReload = false) {
+    if (!forceReload && trimForceDictionaryLoadPromise) return trimForceDictionaryLoadPromise;
+
+    trimForceDictionaryLoadPromise = (async () => {
+      let config = null;
+      try {
+        const saved = localStorage.getItem(TRIMFORCE_DICTIONARY_STORAGE_KEY);
+        if (saved) config = JSON.parse(saved);
+      } catch (e) {
+        console.warn('Could not read saved TrimForce dictionary', e);
+      }
+
+      if (!config) {
+        try {
+          const response = await fetch('trimforce-dictionary.json', {cache: 'no-store'});
+          if (response.ok) config = await response.json();
+        } catch (e) {
+          console.warn('Could not load trimforce-dictionary.json; using built-in dictionary', e);
+        }
+      }
+
+      TRIMFORCE_DICTIONARY = compileTrimForceDictionary(config || defaultDictionaryConfig());
+      return TRIMFORCE_DICTIONARY;
+    })();
+
+    return trimForceDictionaryLoadPromise;
+  }
+
+  function applyTrimForceDictionary(path) {
+    return TRIMFORCE_DICTIONARY.reduce((current, pass) => {
+      return pass.reduce((value, entry) => {
+        return value.replace(entry.re, (match, prefix) => prefix + entry.to);
+      }, current);
+    }, path);
+  }
+
+  // ── DICTIONARY EDITOR PANEL ──────────────────────────────────────
+  // Reads/writes the SAME localStorage key the dictionary engine loads from, so any
+  // edit made here is picked up by every future "AI Fix Paths" run across every file —
+  // not just one row. The editor works on the uncompiled config form (plain text pairs),
+  // while loadTrimForceDictionary() compiles it into regex form for actual matching.
+  let dictEditorConfig = null; // lazily loaded uncompiled config, edited in place
+
+  async function ensureDictEditorConfigLoaded() {
+    if (dictEditorConfig) return dictEditorConfig;
+    let config = null;
+    try {
+      const saved = localStorage.getItem(TRIMFORCE_DICTIONARY_STORAGE_KEY);
+      if (saved) config = JSON.parse(saved);
+    } catch (e) { console.warn('Could not read saved dictionary for editor', e); }
+    if (!config) {
+      try {
+        const response = await fetch('trimforce-dictionary.json', {cache: 'no-store'});
+        if (response.ok) config = await response.json();
+      } catch (e) { /* fine, fall back to built-ins below */ }
+    }
+    dictEditorConfig = normalizeDictionaryConfig(config || defaultDictionaryConfig());
+    return dictEditorConfig;
+  }
+
+  function persistDictEditorConfig() {
+    localStorage.setItem(TRIMFORCE_DICTIONARY_STORAGE_KEY, JSON.stringify(dictEditorConfig));
+    // Force the engine to recompile from the freshly saved config on the next AI Fix run
+    trimForceDictionaryLoadPromise = null;
+  }
+
+  async function toggleDictionaryPanel() {
+    const panel = document.getElementById('dictPanel');
+    const isOpen = panel.style.display !== 'none';
+    if (isOpen) { panel.style.display = 'none'; return; }
+    await ensureDictEditorConfigLoaded();
+    panel.style.display = 'block';
+    renderDictionaryTable();
+    panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function flattenDictEntries() {
+    const rows = [];
+    dictEditorConfig.passes.forEach((pass, passIndex) => {
+      pass.forEach((entry, entryIndex) => rows.push({entry, passIndex, entryIndex}));
+    });
+    return rows;
+  }
+
+  function renderDictionaryTable() {
+    const filter = (document.getElementById('dictSearch').value || '').trim().toLowerCase();
+    const allRows = flattenDictEntries();
+    document.getElementById('dictCountPill').textContent = `${allRows.length} entries`;
+
+    const rows = allRows.filter(({entry}) => {
+      const haystack = `${entry.originalText} ${entry.originalShortening} ${entry.userShortening}`.toLowerCase();
+      return !filter || haystack.includes(filter);
+    });
+
+    const passLabels = {0: 'Built-in — Construction Dictionary', 1: 'Built-in — Reserved', 2: 'Your Custom Terms'};
+    let lastPass = null;
+    const tbody = document.getElementById('dictTableBody');
+
+    if (rows.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" style="color:var(--text-dim);text-align:center;padding:20px;">No matching entries.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = rows.map(({entry, passIndex, entryIndex}) => {
+      const builtin = passIndex < 2;
+      const groupHeader = passIndex !== lastPass
+        ? `<tr><td colspan="3" class="dict-pass-label">${passLabels[passIndex] || 'Custom'}</td></tr>`
+        : '';
+      lastPass = passIndex;
+      const effective = entry.userShortening || entry.originalShortening;
+      return `${groupHeader}<tr>
+        <td><input class="dict-cell-input ${builtin?'builtin':''}" ${builtin?'readonly':''} value="${escapeHtml(entry.originalText)}" oninput="updateDictEntry(${passIndex},${entryIndex},'originalText',this.value)"></td>
+        <td><input class="dict-cell-input" value="${escapeHtml(effective)}" oninput="updateDictEntry(${passIndex},${entryIndex},'userShortening',this.value)"></td>
+        <td>${builtin ? `<button class="dict-delete-btn" onclick="clearDictOverride(${passIndex},${entryIndex})">Reset</button>` : `<button class="dict-delete-btn" onclick="deleteDictEntry(${passIndex},${entryIndex})">Delete</button>`}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function updateDictEntry(passIndex, entryIndex, key, value) {
+    dictEditorConfig.passes[passIndex][entryIndex][key] = value;
+    persistDictEditorConfig();
+  }
+
+  function clearDictOverride(passIndex, entryIndex) {
+    dictEditorConfig.passes[passIndex][entryIndex].userShortening = '';
+    persistDictEditorConfig();
+    renderDictionaryTable();
+    showNotif('Reset to built-in shortening','success');
+  }
+
+  function deleteDictEntry(passIndex, entryIndex) {
+    if (passIndex < 2) return; // built-ins can only be overridden, not deleted
+    dictEditorConfig.passes[passIndex].splice(entryIndex, 1);
+    persistDictEditorConfig();
+    renderDictionaryTable();
+    showNotif('Term deleted','success');
+  }
+
+  function addDictionaryEntry() {
+    const originalInput = document.getElementById('dictNewOriginal');
+    const shortInput = document.getElementById('dictNewShort');
+    const originalText = originalInput.value.trim();
+    const shortening = shortInput.value.trim();
+    if (!originalText || !shortening) {
+      showNotif('Enter both a term and its shortened version','error');
+      return;
+    }
+    dictEditorConfig.passes[2].push({originalText, originalShortening: shortening, userShortening: ''});
+    persistDictEditorConfig();
+    originalInput.value = '';
+    shortInput.value = '';
+    renderDictionaryTable();
+    showNotif('Term added — will apply to every file on next AI Fix','success');
+  }
+
+  function resetDictionaryToDefaults() {
+    if (!confirm('Reset the dictionary to built-in defaults? This removes all your custom terms and overrides.')) return;
+    localStorage.removeItem(TRIMFORCE_DICTIONARY_STORAGE_KEY);
+    dictEditorConfig = defaultDictionaryConfig();
+    trimForceDictionaryLoadPromise = null;
+    renderDictionaryTable();
+    showNotif('Dictionary reset to defaults','success');
+  }
 
   function shortenSegment(seg, targetMaxLen) {
     // Step 1: Replace known dictionary words first (whole-word match)
@@ -984,21 +1909,8 @@
     const progressWrap = document.getElementById('aiProgressWrap');
     const progressFill = document.getElementById('aiProgressFill');
 
-    statusEl.textContent = `Analyzing ${problemPaths.length} problem paths...`;
+    statusEl.textContent = `Applying TrimForce dictionary to ${problemPaths.length} problem paths...`;
     progressWrap.style.display='block';
-
-    // Animate progress
-    let prog = 0;
-    const progInterval = setInterval(()=>{ prog=Math.min(prog+2,90); progressFill.style.width=prog+'%'; },80);
-
-    // Build unique segments to abbreviate, tracking max depth for budget calc
-    const allSegments = new Set();
-    let maxDepth = 1;
-    problemPaths.forEach(r=>{
-      const segs = r.path.split(/[\/\\]/).filter(s=>s.length>0);
-      segs.forEach(s=>allSegments.add(s));
-      maxDepth = Math.max(maxDepth, segs.length);
-    });
 
     const limit = parseInt(document.getElementById('limitSelect').value);
     const destPath = document.getElementById('destPath').value.trim();
@@ -1006,63 +1918,18 @@
     if (destLen >= limit) {
       showNotif(`⚠️ Destination path alone (${destPath.length} chars) already exceeds the ${limit}-char limit — no file renaming can fix this. Shorten the destination folder path itself.`,'error');
     }
-    // Average budget per segment so the FULL path (dest + folders + filename) fits under limit
-    const avgBudgetPerSegment = Math.max(15, Math.floor((limit - destLen) / maxDepth));
 
-    // Use Claude API for smart abbreviations
-    try {
-      const segList = Array.from(allSegments).slice(0,80);
-      const prompt = `You are a construction document management expert helping fix Windows "path too long" errors (255-char limit).
-
-CONTEXT: These are folder and file name segments from a real Procore construction export. The full path = destination folder (${destLen} characters) + up to ${maxDepth} nested folder/file segments. To fit under the ${limit}-character Windows limit, each segment should ideally be around ${avgBudgetPerSegment} characters or less — but it's FAR more important to preserve meaning than to hit an exact number.
-
-RULES:
-1. Use standard construction/engineering abbreviations (Submittal→Sbmtl, Operations→Ops, Drawing→Dwg, etc.)
-2. NEVER cut off a word mid-letter (no "Horizo" from "Horizon") — either abbreviate the whole word meaningfully or keep it
-3. ALWAYS preserve numbers, codes, dates, and IDs exactly (ICR-031, WW35, dates, revision numbers)
-4. Drop filler words if needed (and, the, for) before truncating anything
-5. Keep file extensions intact
-6. If a segment is already short and clear, leave it unchanged
-
-Segments to shorten (aim for ~${avgBudgetPerSegment} chars each, prioritize readability over hitting the exact number):
-${segList.map((s,i)=>`${i+1}. ${s}`).join('\n')}
-
-Return ONLY a JSON object mapping each original segment to its shortened version, nothing else — no markdown, no explanation.`;
-
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 4000,
-          messages: [{role:'user',content:prompt}]
-        })
+    // Load the dictionary (user edits from the Admin page take priority, then the JSON
+    // file if present, then these built-in defaults) and apply it to every problem path.
+    await loadTrimForceDictionary(true);
+    aiFixedPaths = {};
+    const batchSize = 250;
+    for (let i = 0; i < problemPaths.length; i += batchSize) {
+      problemPaths.slice(i, i + batchSize).forEach(r => {
+        aiFixedPaths[r.path] = applyTrimForceDictionary(r.path);
       });
-
-      const data = await response.json();
-      let aiMap = {};
-      try {
-        const text = data.content[0].text.replace(/```json|```/g,'').trim();
-        aiMap = JSON.parse(text);
-      } catch(e) { console.warn('AI parse failed, using local dict'); }
-
-      // Build fixed paths
-      aiFixedPaths = {};
-      problemPaths.forEach(r=>{
-        const sep = r.path.includes('/')?'/':'\\';
-        const parts = r.path.split(sep);
-        const shortened = parts.map(p=>{
-          if (aiMap[p]) return aiMap[p];
-          return shortenSegment(p, avgBudgetPerSegment);
-        }).join(sep);
-        aiFixedPaths[r.path] = shortened;
-      });
-
-    } catch(e) {
-      // Fallback to local dictionary + smart shrink (never blind-truncates)
-      problemPaths.forEach(r=>{
-        aiFixedPaths[r.path] = shortenPath(r.path, avgBudgetPerSegment);
-      });
+      progressFill.style.width = Math.min(100, Math.round((i + batchSize) / problemPaths.length * 100)) + '%';
+      await new Promise(r => setTimeout(r, 0));
     }
 
     // FINAL GUARANTEE PASS: enforce the actual hard limit on every single path,
@@ -1076,33 +1943,87 @@ Return ONLY a JSON object mapping each original segment to its shortened version
       }
     });
 
-    clearInterval(progInterval);
     progressFill.style.width='100%';
     setTimeout(()=>{ progressWrap.style.display='none'; },500);
 
-    // Render before/after table
+    // Render before/after table — dynamic per-segment columns
     statusEl.textContent = `✅ ${problemPaths.length} paths shortened successfully!`;
+    renderBeforeAfterTable(problemPaths, limit, destPath);
 
-    const tbody = document.getElementById('baBody');
-    tbody.innerHTML = problemPaths.map((r,i)=>{
+    document.getElementById('baTableWrap').style.display='block';
+    showNotif('AI fix complete! Use the shortened names above as your renaming guide.','success');
+  }
+
+  function splitIntoSegments(path) {
+    // Split on either separator so folder levels always break on a real "\" (or "/") boundary
+    return path.split(/[\\/]+/).filter(s => s.length > 0);
+  }
+
+  function stripDrive(segs) {
+    // Drop a leading drive letter like "D:" — it won't be part of the K-drive destination path
+    return (segs.length && /^[A-Za-z]:$/.test(segs[0])) ? segs.slice(1) : segs;
+  }
+
+  let lastAIFixBatch = { problemPaths: [], limit: 250, destPath: '' };
+
+  function renderBeforeAfterTable(problemPaths, limit, destPath) {
+    lastAIFixBatch = { problemPaths, limit, destPath };
+    const badgeMap = {danger:'🔴 Still critical', warn:'🟡 Still warning', ok:'🟢 Fixed'};
+
+    const cardsHtml = problemPaths.map((r, i) => {
       const shortened = aiFixedPaths[r.path] || r.path;
+      // Strip the drive ("D:") so before/after line up from the first real folder level
+      const origSegs = stripDrive(splitIntoSegments(r.path));
+      const newSegs  = stripDrive(splitIntoSegments(shortened));
+
+      // Columns are sized to THIS recommendation only — fully independent of every other card
+      const folderCols = Math.max(origSegs.length - 1, newSegs.length - 1, 1);
+
+      // Fixed-layout column shares: folders weight 1 each, filename weight 2 (it needs the room)
+      const folderPct = (100 / (folderCols + 2)).toFixed(3);
+      const filePct   = (200 / (folderCols + 2)).toFixed(3);
+      let colgroup = '<colgroup>';
+      for (let c = 0; c < folderCols; c++) colgroup += `<col style="width:${folderPct}%">`;
+      colgroup += `<col style="width:${filePct}%"></colgroup>`;
+
       const newFull = destPath ? destPath.replace(/\\+$/,'')+'\\'+shortened.replace(/\//g,'\\') : shortened;
       const newLen = newFull.length;
       const saved = r.len - newLen;
       const newStatus = newLen <= limit ? 'ok' : (newLen-limit>30?'danger':'warn');
-      const badgeMap = {danger:'🔴 Still critical',warn:'🟡 Still warning',ok:'🟢 Fixed'};
-      return `<tr>
-        <td style="color:var(--text-dim);font-family:var(--mono);font-size:11px">${i+1}</td>
-        <td class="path-before">${escapeHtml(r.path)}</td>
-        <td class="path-after">${escapeHtml(shortened)}</td>
-        <td><span class="saving-badge">-${saved} chars</span></td>
-        <td class="len-cell" style="color:${newStatus==='ok'?'var(--green)':'var(--red)'}">${newLen}</td>
-        <td><span class="badge ${newStatus}">${badgeMap[newStatus]}</span></td>
-      </tr>`;
+
+      // Left-align folders (Lvl 1 first); the filename always lands in the final column
+      const buildSegCells = (segs) => {
+        let folders = segs.slice(0, -1);
+        const fileName = segs[segs.length - 1] || '';
+        while (folders.length < folderCols) folders.push(''); // pad on the right so Lvl 1 stays put
+        let cells = folders.map(f => f
+          ? `<td class="seg-cell" title="${escapeHtml(f)}">${escapeHtml(f)}</td>`
+          : `<td class="seg-cell"><span class="seg-empty">—</span></td>`
+        ).join('');
+        cells += `<td class="seg-cell filename-cell" title="${escapeHtml(fileName)}">${escapeHtml(fileName)}</td>`;
+        return cells;
+      };
+
+      return `<div class="ba-card">
+        <div class="ba-card-head"><span class="ba-card-idx">#${i+1}</span></div>
+        <div class="ba-card-scroll">
+          <table class="ba-card-table">
+            ${colgroup}
+            <tbody>
+              <tr class="row-original">${buildSegCells(origSegs)}</tr>
+              <tr class="row-shortened">${buildSegCells(newSegs)}</tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ba-meta">
+          <span class="ba-meta-item">Saved <span class="saving-badge">-${saved} chars</span></span>
+          <span class="ba-meta-item">New length <strong style="color:${newStatus==='ok'?'var(--green)':'var(--red)'}">${newLen}</strong> / ${limit}</span>
+          <span class="badge ${newStatus}">${badgeMap[newStatus]}</span>
+        </div>
+      </div>`;
     }).join('');
 
-    document.getElementById('baTableWrap').style.display='block';
-    showNotif('AI fix complete! Use the shortened names above as your renaming guide.','success');
+    document.getElementById('baCards').innerHTML = cardsHtml;
   }
 
   function exportCSV() {
@@ -1115,6 +2036,41 @@ Return ONLY a JSON object mapping each original segment to its shortened version
     a.href = url; a.download = `TrimForce_Scan_${new Date().toISOString().slice(0,10)}.csv`; a.click();
     URL.revokeObjectURL(url);
     showNotif('CSV exported!','success');
+  }
+
+  function exportAISuggestionsToExcel() {
+    const { problemPaths, limit, destPath } = lastAIFixBatch;
+    if (!problemPaths || problemPaths.length === 0) {
+      showNotif('No AI suggestions to export yet — run AI Fix Paths first','error');
+      return;
+    }
+
+    const statusLabel = { danger: 'Still Critical', warn: 'Still Warning', ok: 'Fixed' };
+    const rows = problemPaths.map(r => {
+      const shortened = aiFixedPaths[r.path] || r.path;
+      const newFull = destPath ? destPath.replace(/\\+$/,'') + '\\' + shortened.replace(/\//g,'\\') : shortened;
+      const newLen = newFull.length;
+      const saved = r.len - newLen;
+      const newStatus = newLen <= limit ? 'ok' : (newLen - limit > 30 ? 'danger' : 'warn');
+      return {
+        'Original Path': r.path,
+        'Original Length': r.len,
+        'Suggested Path': shortened,
+        'New Length': newLen,
+        'Characters Saved': saved,
+        'Status': statusLabel[newStatus],
+      };
+    });
+
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws['!cols'] = [
+      { wch: 60 }, { wch: 14 }, { wch: 60 }, { wch: 12 }, { wch: 14 }, { wch: 14 }
+    ];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'AI Suggestions');
+    XLSX.writeFile(wb, `TrimForce_AI_Suggestions_${new Date().toISOString().slice(0,10)}.xlsx`);
+    showNotif('Excel file downloaded!','success');
   }
 
   function copyPathToClipboard(btn, idx) {
